@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
+/* ── self-hosted faces (latin; variable files where Google serves them) ── */
+@font-face {
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("./fonts/fraunces-italic-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("./fonts/public-sans-var.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/ibm-plex-mono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./fonts/ibm-plex-mono-500.woff2") format("woff2");
+}
+
+/* ── the raw layer: night is the loft ─────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --floor: #0A141C;
+  --floor-raised: #0F1D28;
+  --chalk: #DCE8EE;
+  --chalk-soft: #93A9B6;
+  --chalk-faint: #71889A;
+  --batten: #2E4150;
+  --magenta: #FF5C9E;
+  --buff: #C9BB8E;
+  --grid-line: rgba(220, 232, 238, 0.04);
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tracing paper: the portfolio's day palette. One recorded deviation —
+   chalk-faint darkens to #576B7E because the family value reads 4.31
+   against the deep tracing ground; the contrast suite holds the line. */
+[data-lamp="day"] {
+  --floor: #FBF6EC;
+  --floor-raised: #F3EADA;
+  --chalk: #14303F;
+  --chalk-soft: #4A6272;
+  --chalk-faint: #576B7E;
+  --batten: #C3B896;
+  --magenta: #C4106B;
+  --buff: #8A7A45;
+  --grid-line: rgba(20, 48, 63, 0.055);
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-color-scheme: light) {
+  :root:not([data-lamp="night"]):not([data-lamp="day"]) {
+    --floor: #FBF6EC;
+    --floor-raised: #F3EADA;
+    --chalk: #14303F;
+    --chalk-soft: #4A6272;
+    --chalk-faint: #576B7E;
+    --batten: #C3B896;
+    --magenta: #C4106B;
+    --buff: #8A7A45;
+    --grid-line: rgba(20, 48, 63, 0.055);
+    color-scheme: light;
   }
 }
 
+/* ── the utility layer reads the raw layer ────────────────────────────── */
+@theme inline {
+  --color-floor: var(--floor);
+  --color-floor-raised: var(--floor-raised);
+  --color-chalk: var(--chalk);
+  --color-chalk-soft: var(--chalk-soft);
+  --color-chalk-faint: var(--chalk-faint);
+  --color-batten: var(--batten);
+  --color-magenta: var(--magenta);
+  --color-buff: var(--buff);
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: "Public Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+}
+
+/* ── the floor ────────────────────────────────────────────────────────── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--floor);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 66px 66px;
+  color: var(--chalk);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--batten);
+  color: var(--chalk);
+}
+
+:focus-visible {
+  outline: 2px solid var(--magenta);
+  outline-offset: 2px;
+}
+
+/* The one serif on the floor: a study's thesis line. */
+.thesis {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
 }
