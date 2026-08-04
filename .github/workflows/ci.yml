@@ -34,3 +34,5 @@ jobs:
         run: npx vitest run
       - name: Build
         run: npm run build
+      - name: Lighthouse budgets
+        run: npx lhci autorun

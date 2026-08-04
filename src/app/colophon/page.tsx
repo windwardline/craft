@@ -100,9 +100,11 @@ export default function Colophon() {
         three are self-hosted latin subsets. Next.js App Router, React 19,
         Tailwind v4 with the family tokens mapped through{" "}
         <span className="font-mono">@theme inline</span>, Motion for the
-        curves. Interaction budgets print in every study&apos;s footer; the
-        floor targets a perfect Lighthouse pass and each study holds
-        ninety-five or better.
+        curves. Interaction budgets print in every study&apos;s footer.
+        Lighthouse runs in CI with hard floors — a perfect score on
+        accessibility, best practices, and SEO, and eighty-five on
+        performance; production currently measures ninety-four, with the
+        gap being hydration cost, named rather than hidden.
       </p>
     </section>
   );
