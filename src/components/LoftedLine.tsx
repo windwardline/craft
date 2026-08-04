@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { usePrefersReducedMotion } from "../lib/usePrefersReducedMotion";
 
 type Mark = { x: number; y: number; label: string };
@@ -14,8 +13,10 @@ type Props = {
 };
 
 /* The signature: a study's motion curve, chalked on the floor before it
-   runs. Draws itself once on entry; under reduced motion it renders
-   complete and still — the drawing is the fallback, not a casualty. */
+   runs. The draw is pure CSS (stroke-dashoffset over a normalized
+   pathLength), so it needs no JavaScript and reduced motion renders it
+   complete and still via the same stylesheet. Author geometry in a
+   ~640-wide viewBox so annotations render at true text size. */
 export function LoftedLine({ title, d, width, height, marks = [] }: Props) {
   const reduced = usePrefersReducedMotion();
 
@@ -26,41 +27,28 @@ export function LoftedLine({ title, d, width, height, marks = [] }: Props) {
       viewBox={`0 0 ${width} ${height}`}
       className="w-full max-w-2xl overflow-visible text-chalk"
     >
-      {reduced ? (
-        <path
-          data-lofted
-          data-static="true"
-          d={d}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-        />
-      ) : (
-        <motion.path
-          data-lofted
-          data-static="false"
-          d={d}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          strokeLinecap="round"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-        />
-      )}
+      <path
+        data-lofted
+        data-static={reduced ? "true" : "false"}
+        className={reduced ? undefined : "lofted-path"}
+        pathLength={1}
+        d={d}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
       {marks.map((mark) => {
         const anchorEnd = mark.x > width / 2;
         return (
           <g key={mark.label} className="font-mono">
             <circle cx={mark.x} cy={mark.y} r={3} className="fill-chalk-faint" />
             <text
-              x={anchorEnd ? mark.x - 8 : mark.x + 8}
-              y={mark.y - 8}
+              x={anchorEnd ? mark.x - 10 : mark.x + 10}
+              y={mark.y - 10}
               textAnchor={anchorEnd ? "end" : "start"}
-              fontSize={10}
-              className="fill-chalk-faint uppercase tracking-widest"
+              fontSize={11}
+              className="fill-chalk-faint tracking-widest"
             >
               {mark.label}
             </text>
