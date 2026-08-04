@@ -8,7 +8,7 @@ export const line = {
   width: 640,
   height: 120,
   marks: [
-    { x: 24, y: 96, label: "0ms · scale .98 · α 0" },
+    { x: 24, y: 96, label: "0ms · scale .98 · α 0", below: true },
     { x: 616, y: 18, label: "120ms · settle" },
   ],
 };

@@ -2,7 +2,7 @@
 
 import { usePrefersReducedMotion } from "../lib/usePrefersReducedMotion";
 
-type Mark = { x: number; y: number; label: string };
+type Mark = { x: number; y: number; label: string; below?: boolean };
 
 type Props = {
   title: string;
@@ -45,7 +45,7 @@ export function LoftedLine({ title, d, width, height, marks = [] }: Props) {
             <circle cx={mark.x} cy={mark.y} r={3} className="fill-chalk-faint" />
             <text
               x={anchorEnd ? mark.x - 10 : mark.x + 10}
-              y={mark.y - 10}
+              y={mark.below ? mark.y + 22 : mark.y - 10}
               textAnchor={anchorEnd ? "end" : "start"}
               fontSize={11}
               className="fill-chalk-faint tracking-widest"

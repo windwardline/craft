@@ -99,7 +99,7 @@ export function CommandMenu({ items }: { items: Command[] }) {
           placeholder="Type a command…"
           className="w-full border-b border-batten bg-transparent px-4 py-3 font-mono text-sm text-chalk outline-none placeholder:text-chalk-faint"
         />
-        <ul id={listId} role="listbox" aria-label="Commands" className="max-h-64 overflow-y-auto py-1">
+        <ul id={listId} role="listbox" aria-label="Commands" className="max-h-56 overflow-y-auto py-1">
           {results.length === 0 ? (
             <li className="px-4 py-3 font-mono text-xs uppercase tracking-[0.2em] text-chalk-faint">
               Nothing answers to that.
