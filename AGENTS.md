@@ -14,7 +14,7 @@ Typecheck needs route types first: run `npx next typegen` (or a build) before `t
 
 ## Gates — CI in order
 
-`npm ci` → `npx next typegen` → `tsc --noEmit` → lint → vitest → build. Push to main deploys production.
+`npm ci` → `npx next typegen` → `tsc --noEmit` → lint → vitest → build. Push to main deploys production. A parallel `security.yml` (PRs, pushes, weekly cron) gates Semgrep, secret scan, and dependency scan; a post-deploy job asserts the production security headers.
 
 ## Laws
 
