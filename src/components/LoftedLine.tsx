@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { usePrefersReducedMotion } from "../lib/usePrefersReducedMotion";
 
 type Mark = { x: number; y: number; label: string };
 
@@ -16,7 +17,7 @@ type Props = {
    runs. Draws itself once on entry; under reduced motion it renders
    complete and still — the drawing is the fallback, not a casualty. */
 export function LoftedLine({ title, d, width, height, marks = [] }: Props) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
 
   return (
     <svg

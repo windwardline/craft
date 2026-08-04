@@ -1,5 +1,8 @@
 import "@testing-library/jest-dom/vitest";
-import "vitest-axe/extend-expect";
+import { expect } from "vitest";
+import * as axeMatchers from "vitest-axe/matchers";
+
+expect.extend(axeMatchers);
 
 // Some jsdom builds ship without localStorage; tests need a real-enough one.
 if (typeof window !== "undefined" && !window.localStorage) {

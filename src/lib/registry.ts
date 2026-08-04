@@ -11,4 +11,15 @@ export type Study = {
   summary: string;
 };
 
-export const studies: Study[] = [];
+export const studies: Study[] = [
+  {
+    slug: "command-menu",
+    number: 1,
+    date: "2026-08-04",
+    title: "Command menu",
+    thesis: "A command menu earns its speed by refusing to perform it.",
+    status: "interactive",
+    summary:
+      "Scale, fade, and the argument for 120 milliseconds — with no exit animation at all.",
+  },
+];
