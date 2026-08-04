@@ -7,18 +7,18 @@ export const metadata: Metadata = {
     "How this site enforces its own taste: the token contract, the contrast suite, and the budgets.",
 };
 
-const LABEL = "font-mono text-xs uppercase tracking-[0.24em] text-chalk-faint";
+const LABEL = "font-mono text-[11px] uppercase tracking-[0.24em] text-chalk-faint sm:text-xs";
 
 export default function Colophon() {
   const tokens = Object.keys(NIGHT) as (keyof typeof NIGHT)[];
 
   return (
-    <section className="max-w-3xl pt-16">
+    <section className="max-w-4xl pt-16">
       <p className={LABEL}>Colophon</p>
-      <h1 className="thesis mt-6 text-4xl text-chalk">
+      <h1 className="thesis mt-6 text-3xl text-chalk sm:text-4xl">
         Taste, enforced by machinery.
       </h1>
-      <p className="mt-8 max-w-xl leading-relaxed text-chalk-soft">
+      <p className="mt-8 max-w-xl text-sm leading-relaxed text-chalk-soft sm:text-base">
         This page and the test suite read the same file. The palette below is
         imported from the module the contract tests import; if a value on this
         page ever disagrees with a value in CI, one of us is lying and the
@@ -27,7 +27,7 @@ export default function Colophon() {
 
       <h2 className={`${LABEL} mt-14`}>The token contract</h2>
       <div className="mt-4 overflow-x-auto">
-        <table className="w-full border-t border-batten font-mono text-xs">
+        <table className="w-full border-t border-batten font-mono text-[11px] sm:text-xs">
           <thead>
             <tr className="text-left uppercase tracking-[0.18em] text-chalk-faint">
               <th scope="col" className="py-3 pr-4 font-medium">Token</th>
@@ -64,7 +64,7 @@ export default function Colophon() {
       </div>
 
       <h2 className={`${LABEL} mt-14`}>One recorded deviation</h2>
-      <p className="mt-4 max-w-xl leading-relaxed text-chalk-soft">
+      <p className="mt-4 max-w-xl text-sm leading-relaxed text-chalk-soft sm:text-base">
         Day <span className="font-mono text-chalk">--chalk-faint</span> is{" "}
         <span className="font-mono">#576B7E</span>, not the family&apos;s{" "}
         <span className="font-mono">#5C7080</span>. The family value measures
@@ -74,7 +74,7 @@ export default function Colophon() {
       </p>
 
       <h2 className={`${LABEL} mt-14`}>The gates</h2>
-      <ul className="mt-4 max-w-xl space-y-3 leading-relaxed text-chalk-soft">
+      <ul className="mt-4 max-w-xl space-y-3 text-sm leading-relaxed text-chalk-soft sm:text-base">
         <li className="border-l-2 border-batten pl-4">
           Every token&apos;s name and exact hex, asserted in both modes — a
           drive-by tweak is a red build.
@@ -94,7 +94,7 @@ export default function Colophon() {
       </ul>
 
       <h2 className={`${LABEL} mt-14`}>Type, stack, budgets</h2>
-      <p className="mt-4 max-w-xl leading-relaxed text-chalk-soft">
+      <p className="mt-4 max-w-xl text-sm leading-relaxed text-chalk-soft sm:text-base">
         IBM Plex Mono carries the instrument voice; Public Sans carries prose;
         Fraunces italic appears once per page, as a study&apos;s thesis. All
         three are self-hosted latin subsets. Next.js App Router, React 19,

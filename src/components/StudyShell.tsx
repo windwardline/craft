@@ -10,7 +10,7 @@ type Props = {
   footer: { a11y: string; reducedMotion: string; budgetMs: number };
 };
 
-const LABEL = "font-mono text-xs uppercase tracking-[0.24em] text-chalk-faint";
+const LABEL = "font-mono text-[11px] uppercase tracking-[0.24em] text-chalk-faint sm:text-xs";
 
 /* The anatomy contract. Every study renders these seven slots in this
    order; the suite asserts it, so a page can't quietly rearrange. */
@@ -19,10 +19,11 @@ export function StudyShell({ meta, line, demo, notes, source, footer }: Props) {
   const interactive = meta.status === "interactive";
 
   return (
-    <article className="max-w-3xl pt-14">
+    /* Prose holds a reading measure; drawings and demos take the floor. */
+    <article className="pt-14">
       <header
         data-shell-slot="eyebrow"
-        className="flex items-baseline gap-4 font-mono text-xs uppercase tracking-[0.24em] text-chalk-faint"
+        className="flex max-w-3xl items-baseline gap-4 font-mono text-[11px] uppercase tracking-[0.24em] text-chalk-faint sm:text-xs"
       >
         <span>{meta.date}</span>
         <span aria-hidden="true">·</span>
@@ -40,21 +41,21 @@ export function StudyShell({ meta, line, demo, notes, source, footer }: Props) {
         </span>
       </header>
 
-      <h1 data-shell-slot="thesis" className="thesis mt-5 text-3xl text-chalk sm:text-4xl">
+      <h1 data-shell-slot="thesis" className="thesis mt-5 max-w-3xl text-2xl text-chalk sm:text-4xl">
         {meta.thesis}
       </h1>
 
-      <div data-shell-slot="line" className="mt-10">
+      <div data-shell-slot="line" className="mt-10 max-w-4xl">
         {line}
       </div>
 
-      <div data-shell-slot="demo" className="mt-10">
+      <div data-shell-slot="demo" className="mt-10 max-w-5xl">
         {demo}
       </div>
 
-      <section data-shell-slot="notes" aria-label="Why it feels right" className="mt-12">
+      <section data-shell-slot="notes" aria-label="Why it feels right" className="mt-12 max-w-3xl">
         <h2 className={LABEL}>Why it feels right</h2>
-        <ul className="mt-4 space-y-3 leading-relaxed text-chalk-soft">
+        <ul className="mt-4 space-y-3 text-sm leading-relaxed text-chalk-soft sm:text-base">
           {notes.map((note) => (
             <li key={note} className="border-l-2 border-batten pl-4">
               {note}
@@ -63,13 +64,13 @@ export function StudyShell({ meta, line, demo, notes, source, footer }: Props) {
         </ul>
       </section>
 
-      <section data-shell-slot="source" aria-label="Source" className="mt-12">
+      <section data-shell-slot="source" aria-label="Source" className="mt-12 max-w-4xl">
         <h2 className={LABEL}>Source</h2>
         <div className="mt-4">{source}</div>
       </section>
 
-      <footer data-shell-slot="footer" className="mt-12 border-t border-batten pt-5">
-        <dl className="grid gap-4 font-mono text-xs sm:grid-cols-3">
+      <footer data-shell-slot="footer" className="mt-12 max-w-4xl border-t border-batten pt-5">
+        <dl className="grid gap-4 font-mono text-[11px] sm:grid-cols-3 sm:text-xs">
           <div>
             <dt className="uppercase tracking-[0.2em] text-chalk-faint">Access</dt>
             <dd className="mt-1 leading-relaxed text-chalk-soft">{footer.a11y}</dd>

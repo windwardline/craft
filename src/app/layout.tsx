@@ -20,23 +20,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <div
           aria-hidden="true"
-          className="mx-8 mt-7 border-t-2 border-chalk sm:mx-14"
+          className="mx-5 mt-6 border-t-2 border-chalk sm:mx-14 sm:mt-7"
         >
           <div className="mt-[3px] border-t border-batten" />
         </div>
 
-        <header className="mx-8 flex items-baseline justify-between py-6 sm:mx-14">
+        <header className="mx-5 flex flex-wrap items-baseline justify-between gap-y-2 py-4 sm:mx-14 sm:py-6">
           <Link
             href="/"
-            className="font-mono text-sm uppercase tracking-[0.3em] text-chalk"
+            className="font-mono text-[12px] uppercase tracking-[0.22em] text-chalk sm:text-sm sm:tracking-[0.3em]"
           >
             Loft
-            <span className="ml-3 text-chalk-faint">· Windward Line</span>
+            <span className="ml-3 hidden text-chalk-faint sm:inline">· Windward Line</span>
           </Link>
-          <nav className="flex items-baseline gap-8">
+          <nav className="flex items-baseline gap-5 sm:gap-8">
             <Link
               href="/colophon"
-              className="font-mono text-xs uppercase tracking-[0.18em] text-chalk-faint transition-colors hover:text-chalk"
+              className="font-mono text-[11px] uppercase tracking-[0.18em] text-chalk-faint transition-colors hover:text-chalk sm:text-xs"
             >
               Colophon
             </Link>
@@ -44,11 +44,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </nav>
         </header>
 
-        <main className="mx-8 flex-1 pb-16 sm:mx-14">{children}</main>
+        <main className="mx-5 flex-1 pb-12 sm:mx-14 sm:pb-16">{children}</main>
 
-        <footer className="mx-8 pb-8 sm:mx-14">
+        <footer className="mx-5 pb-6 sm:mx-14 sm:pb-8">
           <div aria-hidden="true" className="border-t border-batten" />
-          <p className="pt-4 font-mono text-xs uppercase tracking-[0.22em] text-chalk-faint">
+          <p className="pt-4 font-mono text-[11px] uppercase tracking-[0.22em] text-chalk-faint sm:text-xs">
             Lofted, then run · the chart is at{" "}
             <a
               href="https://portfolio.windwardline.com"

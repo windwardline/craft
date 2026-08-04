@@ -18,7 +18,7 @@ export async function SourcePane({
 
   return (
     <div
-      className="overflow-x-auto rounded-sm border border-batten bg-floor-raised p-4 text-[13px] leading-relaxed [&_pre]:bg-transparent"
+      className="relative overflow-x-auto rounded-sm border border-batten bg-floor-raised p-4 text-[13px] leading-relaxed [&_pre]:bg-transparent"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );

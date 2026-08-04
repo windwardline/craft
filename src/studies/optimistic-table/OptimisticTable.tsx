@@ -60,14 +60,17 @@ export function OptimisticTable({
   }
 
   return (
-    <div className="rounded-sm border border-batten bg-floor-raised">
-      <table className="w-full text-sm">
+    /* Wide content scrolls in its own container; the page never does.
+       `relative` keeps absolute descendants (sr-only text) inside that
+       containment — without it they escape to the page as phantom width. */
+    <div className="relative overflow-x-auto rounded-sm border border-batten bg-floor-raised">
+      <table className="w-full min-w-[560px] text-[13px] sm:text-sm">
         <caption className="sr-only">
           Work items and owners; reassigning an owner applies instantly and
           settles or returns when the server answers.
         </caption>
         <thead>
-          <tr className="border-b border-batten text-left font-mono text-xs uppercase tracking-[0.2em] text-chalk-faint">
+          <tr className="border-b border-batten text-left font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
             <th scope="col" className="px-4 py-3 font-medium">Item</th>
             <th scope="col" className="px-4 py-3 font-medium">Owner</th>
             <th scope="col" className="px-4 py-3 font-medium">State</th>
@@ -85,11 +88,11 @@ export function OptimisticTable({
                 row.rejected && !reduced ? "animate-returned" : ""
               }`}
             >
-              <th scope="row" className="px-4 py-3 font-normal text-chalk-soft">
+              <th scope="row" className="px-4 py-3 text-left font-normal text-chalk-soft">
                 {row.label}
               </th>
               <td className="px-4 py-3 text-chalk">{row.owner}</td>
-              <td className="px-4 py-3 font-mono text-xs uppercase tracking-[0.18em]">
+              <td className="px-4 py-3 font-mono text-[11px] uppercase tracking-[0.18em] sm:text-xs">
                 {row.pending ? (
                   <span className="text-magenta">Pending</span>
                 ) : row.rejected ? (
@@ -103,7 +106,7 @@ export function OptimisticTable({
                   type="button"
                   disabled={row.pending}
                   onClick={() => reassign(row)}
-                  className="rounded-sm border border-batten px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk disabled:cursor-not-allowed disabled:opacity-50"
+                  className="rounded-sm border border-batten px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk disabled:cursor-not-allowed disabled:opacity-50 sm:text-xs"
                 >
                   Reassign
                 </button>

@@ -112,4 +112,13 @@ describe("the optimistic table", () => {
     const { container } = render(<OptimisticTable seed={7} latencyMs={40} />);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it("the scroll wrapper is its own containing block", () => {
+    // sr-only text is position:absolute; without `relative` on the scroll
+    // wrapper it escapes containment and widens the page itself.
+    setReducedMotion(false);
+    const { container } = render(<OptimisticTable seed={7} latencyMs={40} />);
+    const wrapper = container.querySelector(".overflow-x-auto")!;
+    expect(wrapper.classList.contains("relative")).toBe(true);
+  });
 });

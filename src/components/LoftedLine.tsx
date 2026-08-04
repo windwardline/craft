@@ -27,7 +27,7 @@ export function LoftedLine({ title, d, ghostD, width, height, marks = [] }: Prop
       role="img"
       aria-label={title}
       viewBox={`0 0 ${width} ${height}`}
-      className="w-full max-w-2xl overflow-visible text-chalk"
+      className="w-full overflow-visible text-chalk"
     >
       <path
         data-lofted
@@ -57,7 +57,8 @@ export function LoftedLine({ title, d, ghostD, width, height, marks = [] }: Prop
       {marks.map((mark) => {
         const anchorEnd = mark.x > width / 2;
         return (
-          <g key={mark.label} className="font-mono">
+          /* Annotations yield to the curve on small screens. */
+          <g key={mark.label} className="hidden font-mono sm:block">
             <circle cx={mark.x} cy={mark.y} r={3} className="fill-chalk-faint" />
             <text
               x={anchorEnd ? mark.x - 10 : mark.x + 10}

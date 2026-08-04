@@ -16,7 +16,7 @@ export function Lamp() {
     <div
       role="group"
       aria-label="Lamp"
-      className="flex gap-4 font-mono text-xs uppercase tracking-[0.18em]"
+      className="flex gap-3 sm:gap-4 font-mono text-[11px] uppercase tracking-[0.18em] sm:text-xs"
     >
       {MODES.map(({ mode, label }) => (
         <button
