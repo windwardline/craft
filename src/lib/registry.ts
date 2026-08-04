@@ -13,6 +13,16 @@ export type Study = {
 
 export const studies: Study[] = [
   {
+    slug: "drawer-toast",
+    number: 3,
+    date: "2026-08-04",
+    title: "Drawer & toast physics",
+    thesis: "Two springs, stated — and the flat line danger gets instead.",
+    status: "interactive",
+    summary:
+      "A drawer that settles with authority, toasts that cap at three, and a destructive confirm that refuses to bounce.",
+  },
+  {
     slug: "optimistic-table",
     number: 2,
     date: "2026-08-04",
