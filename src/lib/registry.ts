@@ -13,6 +13,16 @@ export type Study = {
 
 export const studies: Study[] = [
   {
+    slug: "optimistic-table",
+    number: 2,
+    date: "2026-08-04",
+    title: "Optimistic table",
+    thesis: "Show people their own edit before the server agrees.",
+    status: "interactive",
+    summary:
+      "Instant paint, a latency plateau, and the settle/return fork — motion only where meaning changes.",
+  },
+  {
     slug: "command-menu",
     number: 1,
     date: "2026-08-04",

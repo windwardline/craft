@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { ComponentType } from "react";
 import { CommandMenuStudy } from "../../../studies/command-menu/Study";
+import { OptimisticTableStudy } from "../../../studies/optimistic-table/Study";
 import { studies, type Study } from "../../../lib/registry";
 
 const COMPOSITIONS: Record<string, ComponentType<{ meta: Study }>> = {
   "command-menu": CommandMenuStudy,
+  "optimistic-table": OptimisticTableStudy,
 };
 
 export function generateStaticParams() {

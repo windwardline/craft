@@ -7,6 +7,8 @@ type Mark = { x: number; y: number; label: string; below?: boolean };
 type Props = {
   title: string;
   d: string;
+  /* An alternate outcome, drawn dashed and faint — a fork in the curve. */
+  ghostD?: string;
   width: number;
   height: number;
   marks?: Mark[];
@@ -17,7 +19,7 @@ type Props = {
    pathLength), so it needs no JavaScript and reduced motion renders it
    complete and still via the same stylesheet. Author geometry in a
    ~640-wide viewBox so annotations render at true text size. */
-export function LoftedLine({ title, d, width, height, marks = [] }: Props) {
+export function LoftedLine({ title, d, ghostD, width, height, marks = [] }: Props) {
   const reduced = usePrefersReducedMotion();
 
   return (
@@ -38,6 +40,20 @@ export function LoftedLine({ title, d, width, height, marks = [] }: Props) {
         strokeWidth={2}
         strokeLinecap="round"
       />
+      {ghostD ? (
+        /* The ghost never animates: the alternate outcome is already
+           charted while the main line draws toward it. */
+        <path
+          data-lofted-ghost
+          className="text-chalk-faint"
+          d={ghostD}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeDasharray="4 5"
+        />
+      ) : null}
       {marks.map((mark) => {
         const anchorEnd = mark.x > width / 2;
         return (

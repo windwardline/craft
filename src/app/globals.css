@@ -137,6 +137,25 @@ body {
   }
 }
 
+/* A returned edit flashes once in buff — the shipped-mark color, because
+   the server's answer is the thing that actually shipped. */
+.animate-returned {
+  animation: returned-flash 600ms ease-out 1;
+}
+@keyframes returned-flash {
+  0% {
+    background-color: color-mix(in srgb, var(--buff) 18%, transparent);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-returned {
+    animation: none;
+  }
+}
+
 /* Source panes: shiki emits dual-theme variables; the lamp picks. */
 .shiki,
 .shiki span {
