@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { DAY, NIGHT } from "./palette";
+import { DAY, NIGHT } from "../src/lib/palette";
 
 // The token contract: the loft's palette is the family night palette,
 // held in tests/palette.ts as exact values. A drive-by hex tweak is a

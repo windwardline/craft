@@ -117,3 +117,20 @@ body {
   font-style: italic;
   font-weight: 400;
 }
+
+/* Source panes: shiki emits dual-theme variables; the lamp picks. */
+.shiki,
+.shiki span {
+  color: var(--shiki-dark);
+  background: transparent;
+}
+[data-lamp="day"] .shiki,
+[data-lamp="day"] .shiki span {
+  color: var(--shiki-light);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-lamp="night"]):not([data-lamp="day"]) .shiki,
+  :root:not([data-lamp="night"]):not([data-lamp="day"]) .shiki span {
+    color: var(--shiki-light);
+  }
+}

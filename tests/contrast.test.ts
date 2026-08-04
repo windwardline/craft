@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DAY, NIGHT } from "./palette";
+import { DAY, NIGHT } from "../src/lib/palette";
 
 // Every text token is measured against both grounds, in both modes.
 // Text tokens hold AA for small text (4.5); buff is a large-mark token
