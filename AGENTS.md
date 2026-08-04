@@ -14,14 +14,14 @@ Typecheck needs route types first: run `npx next typegen` (or a build) before `t
 
 ## Gates — CI in order
 
-`npm ci` → `npx next typegen` → `tsc --noEmit` → lint → vitest → build. Push to main deploys production.
+`npm ci` → `npx next typegen` → `tsc --noEmit` → lint → vitest → build → Lighthouse budgets (`lhci autorun`). Push to main deploys production.
 
 ## Laws
 
 - The approved spec and plan fix design decisions: `docs/superpowers/specs/2026-08-03-craft-site-design.md` and `docs/superpowers/plans/2026-08-03-loft-implementation-plan.md` — palette values, the fixed seven-slot study order, Fraunces italic at most once per page, `--magenta` reserved for running state, `--buff` for shipped marks only, no `!important`.
 - The token contract is test-enforced: `src/lib/palette.ts` holds the exact hexes; `tests/designTokens.test.ts` matches them inside the `:root` and `[data-lamp="day"]` blocks of `globals.css`, and `tests/contrast.test.ts` re-derives WCAG AA for every token pairing (`buff` is the documented 3.0 large-text exception). Change a color in both files or the build goes red.
 - `src/lib/registry.ts` is the only source for study pages, the index, and static params. New studies register there.
-- Lighthouse budgets (100/100/100/100 on `/`, ≥95 per study) are specified in the plan but not yet wired into CI — `@lhci/cli` is installed, no lighthouserc exists. Check budgets manually until that lands.
+- Lighthouse budgets are CI-enforced: `lighthouserc.json` runs `lhci autorun` against the built app — `/` asserts all four categories ≥0.95 (the plan's 1.0 target with its documented 0.05 tolerance), every study asserts performance ≥0.95, three runs each. A new study joins the `collect.url` list in the same change.
 - Security headers and font caching live in `vercel.json`.
 
 <!-- BEGIN:nextjs-agent-rules -->
