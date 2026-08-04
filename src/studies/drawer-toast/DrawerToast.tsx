@@ -53,14 +53,14 @@ export function DrawerToast() {
       }}
       className="absolute inset-y-0 right-0 w-72 border-l border-batten bg-floor-raised p-5 outline-none"
     >
-      <p className="font-mono text-xs uppercase tracking-[0.22em] text-chalk-faint">
+      <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-chalk-faint sm:text-xs">
         The offsets book
       </p>
       <div className="mt-5 flex flex-col items-start gap-3">
         <button
           type="button"
           onClick={raise}
-          className="rounded-sm border border-batten px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk"
+          className="rounded-sm border border-batten px-3 py-1.5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk"
         >
           Raise a toast
         </button>
@@ -72,21 +72,21 @@ export function DrawerToast() {
             data-motion="none"
             className="w-full border border-buff/60 p-3"
           >
-            <p className="text-sm text-chalk">
+            <p className="text-[13px] text-chalk sm:text-sm">
               Delete the offsets book? There is no undo.
             </p>
             <div className="mt-3 flex gap-3">
               <button
                 type="button"
                 onClick={() => setConfirming(false)}
-                className="rounded-sm border border-batten px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-chalk"
+                className="rounded-sm border border-batten px-3 py-1.5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-chalk"
               >
                 Keep it
               </button>
               <button
                 type="button"
                 onClick={() => setConfirming(false)}
-                className="rounded-sm border border-buff px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-buff"
+                className="rounded-sm border border-buff px-3 py-1.5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-buff"
               >
                 Delete
               </button>
@@ -96,7 +96,7 @@ export function DrawerToast() {
           <button
             type="button"
             onClick={() => setConfirming(true)}
-            className="rounded-sm border border-batten px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-buff hover:text-buff"
+            className="rounded-sm border border-batten px-3 py-1.5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-buff hover:text-buff"
           >
             Delete the offsets book
           </button>
@@ -104,7 +104,7 @@ export function DrawerToast() {
         <button
           type="button"
           onClick={close}
-          className="rounded-sm border border-batten px-3 py-1.5 font-mono text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk"
+          className="rounded-sm border border-batten px-3 py-1.5 font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk"
         >
           Close drawer
         </button>
@@ -115,10 +115,10 @@ export function DrawerToast() {
   return (
     <div className="relative min-h-96 overflow-hidden rounded-sm border border-batten">
       <div data-background inert={open || undefined} className="p-5">
-        <p className="font-mono text-xs uppercase tracking-[0.22em] text-chalk-faint">
+        <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-chalk-faint sm:text-xs">
           The bench
         </p>
-        <p className="mt-3 max-w-sm text-sm leading-relaxed text-chalk-soft">
+        <p className="mt-3 max-w-sm text-[13px] leading-relaxed text-chalk-soft sm:text-sm">
           Background work sits here. While the drawer is open this whole
           region is inert — unreachable by pointer, keyboard, and screen
           reader alike.
@@ -127,7 +127,7 @@ export function DrawerToast() {
           ref={openRef}
           type="button"
           onClick={() => setOpen(true)}
-          className="mt-5 rounded-sm border border-batten px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk"
+          className="mt-5 rounded-sm border border-batten px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk sm:text-xs"
         >
           Open the drawer
         </button>
@@ -153,7 +153,7 @@ export function DrawerToast() {
             <output
               key={toast.id}
               data-static="true"
-              className="rounded-sm border border-batten bg-floor px-3 py-2 font-mono text-xs text-chalk-soft"
+              className="rounded-sm border border-batten bg-floor px-3 py-2 font-mono text-[11px] text-chalk-soft sm:text-xs"
             >
               {toast.label}
             </output>
@@ -164,7 +164,7 @@ export function DrawerToast() {
               initial={{ y: 24, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ type: "spring", ...SPRINGS.toast }}
-              className="rounded-sm border border-batten bg-floor px-3 py-2 font-mono text-xs text-chalk-soft"
+              className="rounded-sm border border-batten bg-floor px-3 py-2 font-mono text-[11px] text-chalk-soft sm:text-xs"
             >
               {toast.label}
             </motion.output>

@@ -97,11 +97,11 @@ export function CommandMenu({ items }: { items: Command[] }) {
           }}
           onKeyDown={onInputKeyDown}
           placeholder="Type a command…"
-          className="w-full border-b border-batten bg-transparent px-4 py-3 font-mono text-sm text-chalk outline-none placeholder:text-chalk-faint"
+          className="w-full border-b border-batten bg-transparent px-4 py-3 font-mono text-[13px] text-chalk outline-none placeholder:text-chalk-faint sm:text-sm"
         />
         <ul id={listId} role="listbox" aria-label="Commands" className="max-h-56 overflow-y-auto py-1">
           {results.length === 0 ? (
-            <li className="px-4 py-3 font-mono text-xs uppercase tracking-[0.2em] text-chalk-faint">
+            <li className="px-4 py-3 font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-faint sm:text-xs">
               Nothing answers to that.
             </li>
           ) : (
@@ -117,7 +117,7 @@ export function CommandMenu({ items }: { items: Command[] }) {
                   setLastRun(command.label);
                   close();
                 }}
-                className={`cursor-pointer px-4 py-2.5 font-mono text-sm ${
+                className={`cursor-pointer px-4 py-2.5 font-mono text-[13px] sm:text-sm ${
                   index === clampedActive
                     ? "bg-batten/40 text-chalk"
                     : "text-chalk-soft"
@@ -139,11 +139,11 @@ export function CommandMenu({ items }: { items: Command[] }) {
           ref={triggerRef}
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="rounded-sm border border-batten px-4 py-2 font-mono text-xs uppercase tracking-[0.2em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk"
+          className="rounded-sm border border-batten px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-chalk-soft transition-colors hover:border-chalk-faint hover:text-chalk sm:text-xs"
         >
           Open command menu <span className="ml-2 text-chalk-faint">⌘K</span>
         </button>
-        <p aria-live="polite" className="font-mono text-xs text-chalk-faint">
+        <p aria-live="polite" className="font-mono text-[11px] text-chalk-faint sm:text-xs">
           {lastRun ? `Ran: ${lastRun}` : "Nothing run yet"}
         </p>
       </div>
