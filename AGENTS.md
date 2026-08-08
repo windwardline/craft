@@ -14,7 +14,7 @@ Typecheck needs route types first: run `npx next typegen` (or a build) before `t
 
 ## Gates — CI in order
 
-`npm ci` → `npx next typegen` → `tsc --noEmit` → lint → vitest → build. Push to main deploys production. A parallel `security.yml` (PRs, pushes, weekly cron) gates Semgrep, secret scan, and dependency scan; a post-deploy job asserts the production security headers. An advisory Claude review runs on every same-repo PR via `claude-review.yml`, which deliberately calls the fleet reusable at `@main` — one merge updates every repo. It activates only when the `ANTHROPIC_API_KEY` secret is present; fork PRs never receive secrets, so they skip it by security design.
+`npm ci` → `npx next typegen` → `tsc --noEmit` → lint → vitest → build. Push to main deploys production. A parallel `security.yml` (PRs, pushes, weekly cron) gates Semgrep, secret scan, and dependency scan; a post-deploy job asserts the production security headers. An advisory Claude review runs on every same-repo PR via `claude-review.yml`, which deliberately calls the fleet reusable at `@main` — one merge updates every repo. It activates only when the `CLAUDE_CODE_OAUTH_TOKEN` secret is present — reviews bill the owner's Claude subscription, not Console credits; fork PRs never receive secrets, so they skip it by security design.
 
 ## Laws
 
