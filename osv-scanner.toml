@@ -1,0 +1,35 @@
+# OSV-Scanner policy for the dependency-scan gate in
+# .github/workflows/security.yml.
+#
+# An entry here suppresses a finding; it does not fix one. Every entry states
+# why the risk is accepted and carries an expiry, because an accepted risk that
+# cannot expire is an unreviewed one. When ignoreUntil passes the gate fails
+# again and the decision is made a second time, on that day's facts. Same
+# policy as grown-men-grow's osv-scanner.toml, which set the precedent.
+
+# extract-zip 2.0.1 -- extraction does not validate symlink targets, so a
+# crafted archive can write outside the directory it is extracted into.
+# https://osv.dev/GHSA-jmr9-qjv8-65gv (High)
+#
+# There is nothing to upgrade to. extract-zip has published no release since
+# 2.0.1 in March 2023, and the scanner agrees: of the two findings in this
+# lockfile it reports "1 vulnerability can be fixed", and this is not the one.
+#
+# It is a devDependency, reached only through a gate that does not run:
+#
+#   @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers -> extract-zip
+#
+# @lhci/cli appears nowhere in this repository but package.json. No script
+# invokes it, no workflow runs it, and there is no lighthouserc. The Lighthouse
+# gate is parked until two studies clear 95 (#28), so the extraction code is
+# installed and never executed, in CI or locally.
+#
+# Reconsider when the Lighthouse gate is wired, or at the expiry, whichever
+# comes first. Wiring it does not by itself make this reachable: puppeteer-core,
+# unlike puppeteer, downloads no browser on install, and LHCI drives an
+# already-installed Chrome by default -- extraction happens only if something
+# calls the browser-install API.
+[[IgnoredVulns]]
+id = "GHSA-jmr9-qjv8-65gv"
+ignoreUntil = 2026-11-15
+reason = "extract-zip 2.0.1 has no patched release and no upstream path off it; its last release was March 2023. devDependency only, reached via @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers. Nothing invokes @lhci/cli: no script, no workflow, no lighthouserc -- the Lighthouse gate is parked (#28), so the extraction code never executes. Expires 2026-11-15, or on wiring that gate, for re-decision."
