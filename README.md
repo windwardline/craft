@@ -32,7 +32,7 @@ CSS, so it runs without JavaScript and lands complete under reduced motion.
   (day chalk-faint, corrected and recorded).
 - **Behavior and axe checks** on every study: focus traps, inert
   backgrounds, live regions, reduced-motion branches — asserted, not
-  assumed. 57 tests; typecheck, lint, tests, and build gate every push.
+  assumed. 58 tests; typecheck, lint, tests, and build gate every push.
 
 ## Structure
 
