@@ -1,6 +1,6 @@
 # Loft (craft) — operating contract
 
-Operating contract for AI work in this repo; the global `~/AGENTS.md` still applies. Loft is a public log of runnable React interaction studies — each one a drawn motion curve, a live demo, argued notes, and source. Live at craft.windwardline.com.
+Operating contract for AI work in this repo; the global `~/AGENTS.md` still applies. Work here follows the CONVERGE cycle and delivery discipline in `FLEET.md` (windwardline/windwardline) — find → refute → verify yourself → fix → re-rank → test → update → report, and the delivery rules under it. Loft is a public log of runnable React interaction studies — each one a drawn motion curve, a live demo, argued notes, and source. Live at craft.windwardline.com.
 
 ## Stack — do not substitute without flagging
 
