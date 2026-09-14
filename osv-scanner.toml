@@ -12,8 +12,7 @@
 # https://osv.dev/GHSA-jmr9-qjv8-65gv (High)
 #
 # There is nothing to upgrade to. extract-zip has published no release since
-# 2.0.1 in March 2023, and the scanner agrees: of the two findings in this
-# lockfile it reports "1 vulnerability can be fixed", and this is not the one.
+# 2.0.1 in March 2023.
 #
 # It is a devDependency, reached only through a gate that does not run:
 #
@@ -33,3 +32,22 @@
 id = "GHSA-jmr9-qjv8-65gv"
 ignoreUntil = 2026-11-15
 reason = "extract-zip 2.0.1 has no patched release and no upstream path off it; its last release was March 2023. devDependency only, reached via @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers. Nothing invokes @lhci/cli: no script, no workflow, no lighthouserc -- the Lighthouse gate is parked (#28), so the extraction code never executes. Expires 2026-11-15, or on wiring that gate, for re-decision."
+
+# extract-zip 2.0.1 again -- unvalidated symlink path traversal, a sibling of
+# the advisory above on the same unfixable package.
+# https://osv.dev/GHSA-7pqw-9j4j-h8q3 (High, CVSS 8.1)
+#
+# Every sentence of the reasoning above applies unchanged: same package, same
+# absence of any patched release, same unreachable path through a parked gate.
+# It is listed separately only because OSV-Scanner matches on advisory id, so
+# the entry above does not cover it -- which is how a fix for two critical
+# unauthenticated RCEs in Next (#54) arrived at a red gate held by a dev-only
+# finding nothing can fix.
+#
+# The expiry is deliberately the SAME DAY as the entry above. Two suppressions
+# on one dead package with staggered dates would split one decision into two,
+# and the second would be made without the first in view.
+[[IgnoredVulns]]
+id = "GHSA-7pqw-9j4j-h8q3"
+ignoreUntil = 2026-11-15
+reason = "Second advisory on extract-zip 2.0.1, which has no patched release and no upstream path off it. Same devDependency chain as GHSA-jmr9-qjv8-65gv: @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers, and nothing invokes @lhci/cli -- no script, no workflow, no lighthouserc, gate parked (#28). Expires 2026-11-15 alongside its sibling so both are re-decided together."
