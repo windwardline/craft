@@ -6,48 +6,26 @@
 # cannot expire is an unreviewed one. When ignoreUntil passes the gate fails
 # again and the decision is made a second time, on that day's facts. Same
 # policy as grown-men-grow's osv-scanner.toml, which set the precedent.
-
-# extract-zip 2.0.1 -- extraction does not validate symlink targets, so a
-# crafted archive can write outside the directory it is extracted into.
-# https://osv.dev/GHSA-jmr9-qjv8-65gv (High)
 #
-# There is nothing to upgrade to. extract-zip has published no release since
-# 2.0.1 in March 2023.
+# THERE ARE NO ENTRIES, and that is the point.
 #
-# It is a devDependency, reached only through a gate that does not run:
+# Two suppressions lived here until 2026-09-14, both for extract-zip 2.0.1 —
+# a package with no release since March 2023 and no patched version at any
+# version. They were honest: the chain was @lhci/cli -> lighthouse ->
+# puppeteer-core -> @puppeteer/browsers, a devDependency reached only through a
+# gate that does not run.
 #
-#   @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers -> extract-zip
+# But OSV-Scanner matches on ADVISORY ID, not on package. The first entry
+# covered GHSA-jmr9-qjv8-65gv; when GHSA-7pqw-9j4j-h8q3 landed on the same
+# unfixable package the gate went red again and blocked a fix for two critical
+# unauthenticated RCEs in Next (#54). A gate that stops protecting and starts
+# preventing protection is worse than no gate, and a suppression that must be
+# extended every time upstream files another advisory against a dead package is
+# a standing tax with no end date.
 #
-# @lhci/cli appears nowhere in this repository but package.json. No script
-# invokes it, no workflow runs it, and there is no lighthouserc. The Lighthouse
-# gate is parked until two studies clear 95 (#28), so the extraction code is
-# installed and never executed, in CI or locally.
-#
-# Reconsider when the Lighthouse gate is wired, or at the expiry, whichever
-# comes first. Wiring it does not by itself make this reachable: puppeteer-core,
-# unlike puppeteer, downloads no browser on install, and LHCI drives an
-# already-installed Chrome by default -- extraction happens only if something
-# calls the browser-install API.
-[[IgnoredVulns]]
-id = "GHSA-jmr9-qjv8-65gv"
-ignoreUntil = 2026-11-15
-reason = "extract-zip 2.0.1 has no patched release and no upstream path off it; its last release was March 2023. devDependency only, reached via @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers. Nothing invokes @lhci/cli: no script, no workflow, no lighthouserc -- the Lighthouse gate is parked (#28), so the extraction code never executes. Expires 2026-11-15, or on wiring that gate, for re-decision."
-
-# extract-zip 2.0.1 again -- unvalidated symlink path traversal, a sibling of
-# the advisory above on the same unfixable package.
-# https://osv.dev/GHSA-7pqw-9j4j-h8q3 (High, CVSS 8.1)
-#
-# Every sentence of the reasoning above applies unchanged: same package, same
-# absence of any patched release, same unreachable path through a parked gate.
-# It is listed separately only because OSV-Scanner matches on advisory id, so
-# the entry above does not cover it -- which is how a fix for two critical
-# unauthenticated RCEs in Next (#54) arrived at a red gate held by a dev-only
-# finding nothing can fix.
-#
-# The expiry is deliberately the SAME DAY as the entry above. Two suppressions
-# on one dead package with staggered dates would split one decision into two,
-# and the second would be made without the first in view.
-[[IgnoredVulns]]
-id = "GHSA-7pqw-9j4j-h8q3"
-ignoreUntil = 2026-11-15
-reason = "Second advisory on extract-zip 2.0.1, which has no patched release and no upstream path off it. Same devDependency chain as GHSA-jmr9-qjv8-65gv: @lhci/cli -> lighthouse -> puppeteer-core -> @puppeteer/browsers, and nothing invokes @lhci/cli -- no script, no workflow, no lighthouserc, gate parked (#28). Expires 2026-11-15 alongside its sibling so both are re-decided together."
+# @lhci/cli was installed and unwired — no lighthouserc, no CI job, no script —
+# so removing it (#55) cleared both advisories permanently, along with 279
+# packages and every remaining vulnerability in this lockfile. Re-add it when
+# the Lighthouse gate is actually wired (#28); the advisories come back with it,
+# and the decision gets made then with the gate's value on the other side of the
+# scale, which is the only time that trade can honestly be weighed.
