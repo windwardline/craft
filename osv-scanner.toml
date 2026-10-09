@@ -7,7 +7,8 @@
 # again and the decision is made a second time, on that day's facts. Same
 # policy as grown-men-grow's osv-scanner.toml, which set the precedent.
 #
-# THERE ARE NO ENTRIES, and that is the point.
+# There is one entry, for braces (below). Read the history first: it is why
+# that entry is narrow and dated rather than open-ended.
 #
 # Two suppressions lived here until 2026-09-14, both for extract-zip 2.0.1 —
 # a package with no release since March 2023 and no patched version at any
@@ -29,3 +30,25 @@
 # the Lighthouse gate is actually wired (#28); the advisories come back with it,
 # and the decision gets made then with the gate's value on the other side of the
 # scale, which is the only time that trade can honestly be weighed.
+
+# braces 3.0.3 -- deeply nested brace patterns exhaust the stack during
+# expansion. https://osv.dev/GHSA-vfj7-8cjw-p6xm (High 7.5, availability only;
+# published 2026-09-18).
+#
+# There is nothing to upgrade to. braces has published no version above 3.0.3,
+# and the scanner reports this finding with no fixed version.
+#
+# The attacker must supply the glob pattern. The only path to braces in this
+# lockfile is eslint-config-next -> @next/eslint-plugin-next -> fast-glob ->
+# micromatch -> braces, all devDependencies (`npm ls braces --omit=dev` is
+# empty). The plugin calls fast-glob in exactly one place, utils/get-root-dirs,
+# on `settings.next.rootDir` from this repository's own eslint.config.mjs,
+# which does not set it. The pattern is ours; no request, form or content on
+# craft.windwardline.com reaches it, and lint never runs in production.
+#
+# Reconsider before the expiry if a patched braces ships, if braces appears on
+# a production path, or if anything feeds an external pattern to the linter.
+[[IgnoredVulns]]
+id = "GHSA-vfj7-8cjw-p6xm"
+ignoreUntil = 2026-11-09
+reason = "braces has published no version above 3.0.3, so there is no patched release. devDependency only, via eslint-config-next -> @next/eslint-plugin-next -> fast-glob -> micromatch; the plugin globs only settings.next.rootDir from this repository's own eslint config, so no attacker-supplied pattern reaches it and nothing runs in production. Expires 2026-11-09 for re-decision."

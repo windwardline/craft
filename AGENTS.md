@@ -4,7 +4,7 @@ Operating contract for AI work in this repo; the global `~/AGENTS.md` still appl
 
 ## Stack — do not substitute without flagging
 
-Next.js 16.3.0 and React 19.2.8, both exact pins. Tailwind v4 via `@theme` in `src/app/globals.css`. motion, shiki, vitest + vitest-axe. Node 24.
+Next.js 16.3.8 and React 19.3.0, both exact pins. Tailwind v4 via `@theme` in `src/app/globals.css`. motion, shiki, vitest + vitest-axe. Node 24.
 
 ## Commands
 
