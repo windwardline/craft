@@ -5,7 +5,7 @@
 # why the risk is accepted and carries an expiry, because an accepted risk that
 # cannot expire is an unreviewed one. When ignoreUntil passes the gate fails
 # again and the decision is made a second time, on that day's facts. Same
-# policy as grown-men-grow's osv-scanner.toml, which set the precedent.
+# policy as the fleet's other accepted advisories.
 #
 # There is one entry, for braces (below). Read the history first: it is why
 # that entry is narrow and dated rather than open-ended.
