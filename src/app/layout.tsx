@@ -51,10 +51,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <p className="pt-4 font-mono text-[11px] uppercase tracking-[0.22em] text-chalk-faint sm:text-xs">
             Lofted, then run · the chart is at{" "}
             <a
-              href="https://portfolio.windwardline.com"
+              href="https://michaelpeacock.dev"
               className="text-chalk-soft transition-colors hover:text-chalk"
             >
-              portfolio.windwardline.com
+              michaelpeacock.dev
             </a>
           </p>
         </footer>
