@@ -9,7 +9,7 @@ full size in chalk before anything is built. This is that floor for
 interfaces: every study starts as a drawn motion curve — the lofted line —
 then runs live beside its own reasoning, source, and budget. The chart of
 what shipped is at
-[portfolio.windwardline.com](https://portfolio.windwardline.com); this is
+[michaelpeacock.dev](https://michaelpeacock.dev); this is
 where the lines get drawn.
 
 ## The study contract
